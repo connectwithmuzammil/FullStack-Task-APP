@@ -94,7 +94,7 @@ export const fetchTodos = createAsyncThunk('fetchTodos', async () => {
     try {
         const url = 'http://localhost:3000/api/v1/tasks';
         const data = await fetchData(url);
-        console.log('Fetched todos:', data);
+        // console.log('Fetched todos:', data);
         return data;
     } catch (error) {
         console.error('Error fetching todos:', error);
@@ -106,7 +106,7 @@ export const deleteTodo = createAsyncThunk('deleteTodo', async (id, { getState, 
     try {
         await axios.delete(`http://localhost:3000/api/v1/tasks/${id}`);
         const existingTodos = getState().todos;
-        console.log('existingTodos', existingTodos)
+        // console.log('existingTodos', existingTodos)
         const updatedTodos = existingTodos.filter((todo) => todo.id !== id);
 
         return updatedTodos;
@@ -121,7 +121,7 @@ export const deleteTodo = createAsyncThunk('deleteTodo', async (id, { getState, 
         return rejectWithValue(error.message);
     }
 });
-export const addTodos = createAsyncThunk('addTask', async (taskData) => {
+export const addTodos = createAsyncThunk('addTodos', async (taskData) => {
     console.log('taskData', taskData)
     try {
         const url = ('http://localhost:3000/api/v1/tasks');
@@ -135,16 +135,16 @@ export const addTodos = createAsyncThunk('addTask', async (taskData) => {
 export const { setTodos, setError, setLoading } = todoSlice.actions;
 
 
-export const addTask = createAsyncThunk('addTask', async (taskData) => {
-    // console.log('taskData', taskData)
-    try {
-        const res = await axios.post('http://localhost:3000/api/v1/tasks', taskData);
-        // console.log("POST RES:", res);
-        return res.data.task;
-    } catch (error) {
-        console.error('Error adding task:', error);
-        throw error;
-    }
-});
+// export const addTask = createAsyncThunk('addTask', async (taskData) => {
+//     // console.log('taskData', taskData)
+//     try {
+//         const res = await axios.post('http://localhost:3000/api/v1/tasks', taskData);
+//         // console.log("POST RES:", res);
+//         return res.data.task;
+//     } catch (error) {
+//         console.error('Error adding task:', error);
+//         throw error;
+//     }
+// });
 
 export default todoSlice.reducer

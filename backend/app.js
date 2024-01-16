@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const app = express();
 const task = require('./routes/tasks');
@@ -8,7 +9,7 @@ const PORT = 3000 || process.env.PORT;
 
 //Middleware
 app.use(express.json());
-
+app.use(cors());
 // app.get('/', (req, res) => {
 //     res.send("Task Manager API");
 // })
